@@ -1,12 +1,10 @@
 import React from 'react';
 import List from './List';
 
-const Board = () => {
+const Board = ({ id, title, background }) => {
   return (
     <div>
-      <p>Board Component</p>
-      <hr />
-      <List />
+      <h4>{title}</h4>
     </div>
   );
 };
