@@ -1,15 +1,14 @@
 import React from 'react';
 import Card from './Card';
 
-const List = () => {
+const List = ({ title }) => {
   return (
     <div>
-      <p>List</p>
-      <hr />
+      <p>{title}</p>
+      {/* <Card />
       <Card />
       <Card />
-      <Card />
-      <Card />
+      <Card /> */}
     </div>
   );
 };

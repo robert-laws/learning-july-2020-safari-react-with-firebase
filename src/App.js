@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
 import { boardData } from './data/boardData';
+import Home from './pages/Home';
 import Board from './components/Board';
 
 function App() {
@@ -10,27 +11,16 @@ function App() {
     setBoards(boardData);
   }, []);
 
-  const handleClick = () => {
-    setBoards([
-      ...boards,
-      {
-        id: Math.floor(Math.random() * 10000),
-        title: 'New Board Example',
-        background: '#7A1ACC',
-      },
-    ]);
+  const createNewBoard = (board) => {
+    setBoards([...boards, board]);
   };
 
   return (
     <div>
-      <button onClick={handleClick}>Add Board</button>
-      {boards.map((board) => (
-        <Board
-          key={board.id}
-          title={board.title}
-          background={board.background}
-        />
-      ))}
+      <h1>Boards App</h1>
+      <hr />
+      <Home boards={boards} createNewBoard={createNewBoard} />
+      <Board title={'Sample Board'} />
     </div>
   );
 }
