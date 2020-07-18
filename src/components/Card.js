@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Card = () => {
+const Card = ({ card }) => {
   return (
     <div>
-      <p>Card</p>
+      <p>{card.text}</p>
     </div>
   );
+};
+
+Card.propTypes = {
+  card: PropTypes.object.isRequired,
 };
 
 export default Card;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import BoardPreview from '../components/BoardPreview';
 
 const Home = (props) => {
@@ -25,6 +26,11 @@ const Home = (props) => {
       ))}
     </>
   );
+};
+
+Home.propTypes = {
+  boards: PropTypes.array.isRequired,
+  createNewBoard: PropTypes.func.isRequired,
 };
 
 export default Home;
