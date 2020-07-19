@@ -1,30 +1,14 @@
 import React from 'react';
+import Board from '../components/Board';
 import PropTypes from 'prop-types';
-import BoardPreview from '../components/BoardPreview';
 
-const Home = (props) => {
-  const { boards, createNewBoard } = props;
-
-  const NewBoard = () => {
-    const board = {
-      id: 5000,
-      title: 'Newly Created Board',
-      background: '#4A22AC',
-    };
-
-    createNewBoard(board);
-  };
-
+const Home = ({ boards, createNewBoard }) => {
   return (
-    <>
-      <h2>Home</h2>
-      <button onClick={NewBoard}>New Board</button>
+    <section className='home'>
       {boards.map((board) => (
-        <div key={board.id}>
-          <BoardPreview board={board} />
-        </div>
+        <Board key={board.id} board={board} />
       ))}
-    </>
+    </section>
   );
 };
 

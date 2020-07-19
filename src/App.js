@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
 import { boardData } from './data/boardData';
+import Header from './components/Header';
 import Home from './pages/Home';
-import Board from './components/Board';
+import Footer from './components/Footer';
 
 function App() {
   const [boards, setBoards] = useState([]);
@@ -16,11 +17,10 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Boards App</h1>
-      <hr />
+    <div className='app'>
+      <Header />
       <Home boards={boards} createNewBoard={createNewBoard} />
-      <Board title={'Sample Board'} />
+      <Footer />
     </div>
   );
 }
