@@ -1,0 +1,21 @@
+.list-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  .list {
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 0px 10px 15px;
+    min-width: 250px;
+
+    .card {
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  }
+}

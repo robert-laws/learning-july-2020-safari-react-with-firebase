@@ -31,11 +31,11 @@ const Board = ({ title }) => {
     <div>
       <h4>{title}</h4>
       <button onClick={createNewList}>Add New List</button>
-      {lists.map((list) => (
-        <div key={list.id}>
-          <List list={list} createNewList={createNewList} />
-        </div>
-      ))}
+      <div className='list-wrapper'>
+        {lists.map((list) => (
+          <List key={list.id} list={list} createNewList={createNewList} />
+        ))}
+      </div>
     </div>
   );
 };

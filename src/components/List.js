@@ -4,11 +4,13 @@ import Card from './Card';
 
 const List = ({ list }) => {
   return (
-    <div>
-      <p>{list.title}</p>
-      {list.cards.map((card) => (
-        <Card key={card.id} card={card} />
-      ))}
+    <div className='list'>
+      <h4>{list.title}</h4>
+      <div className='card'>
+        {list.cards.map((card) => (
+          <Card key={card.id} card={card} />
+        ))}
+      </div>
     </div>
   );
 };
