@@ -1,7 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const CreateBoardForm = () => {
-  return <div>Create Board Form</div>;
+const CreateBoardForm = ({ createNewBoard }) => {
+  const [board, setBoard] = useState({
+    id: 1,
+    title: '',
+    background: '',
+    lists: [],
+  });
+
+  const handleChange = (event) => {
+    setBoard({
+      ...board,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    createNewBoard(board);
+
+    setBoard({
+      id: 1,
+      title: '',
+      background: '',
+      lists: [],
+    });
+  };
+
+  return (
+    <div className='create-board-form'>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor='title'>Title:</label>
+        <input
+          type='text'
+          name='title'
+          value={board.title}
+          onChange={handleChange}
+        />
+        <select
+          name='background'
+          value={board.background}
+          onChange={handleChange}
+        >
+          <option value=''>Select a Background Color</option>
+          <option value='#DDAA11'>Mustard</option>
+          <option value='#77AC12'>Green</option>
+          <option value='#4A11CA'>Purple</option>
+          <option value='#009991'>Teal</option>
+        </select>
+        <input type='submit' value='Create New Board' />
+      </form>
+    </div>
+  );
 };
 
 export default CreateBoardForm;
