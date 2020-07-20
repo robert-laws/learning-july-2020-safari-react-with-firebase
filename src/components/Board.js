@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import List from './List';
 
-const Board = ({ board: { title, lists } }) => {
+const Board = ({ board: { title, background, lists } }) => {
   return (
-    <div>
+    <div style={{ backgroundColor: `${background}` }}>
       <h4>{title}</h4>
       <p>...</p>
       <div className='list-wrapper'>
