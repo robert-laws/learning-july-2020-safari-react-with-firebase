@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types';
 
 const CreateBoardForm = ({ createNewBoard }) => {
   const [board, setBoard] = useState({
-    id: 1,
+    id: uuidv4(),
     title: '',
     background: '',
     lists: [],
@@ -20,7 +22,7 @@ const CreateBoardForm = ({ createNewBoard }) => {
     createNewBoard(board);
 
     setBoard({
-      id: 1,
+      id: uuidv4(),
       title: '',
       background: '',
       lists: [],
@@ -54,6 +56,10 @@ const CreateBoardForm = ({ createNewBoard }) => {
       </form>
     </div>
   );
+};
+
+CreateBoardForm.propTypes = {
+  createNewBoard: PropTypes.func.isRequired,
 };
 
 export default CreateBoardForm;
