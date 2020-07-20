@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import List from './List';
 import { v4 as uuidv4 } from 'uuid';
 
-const Board = ({ board: { title, background, lists } }) => {
-  const [myLists, setMyLists] = useState(lists);
+const Board = ({ board: { id, title, background, lists }, addListToBoard }) => {
+  // const [myLists, setMyLists] = useState(lists);
   const [newList, setNewList] = useState({
     id: uuidv4(),
     title: '',
@@ -21,9 +21,9 @@ const Board = ({ board: { title, background, lists } }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(newList);
+    addListToBoard(id, newList);
 
-    setMyLists([...myLists, newList]);
+    // setMyLists([...myLists, newList]);
 
     setNewList({
       id: uuidv4(),
@@ -31,12 +31,13 @@ const Board = ({ board: { title, background, lists } }) => {
       cards: [],
     });
   };
+
   return (
     <div className='board' style={{ backgroundColor: `${background}` }}>
       <h4>{title}</h4>
       <div className='list-wrapper'>
-        {myLists.length &&
-          myLists.map((list) => (
+        {lists.length &&
+          lists.map((list) => (
             <List key={list.id} title={list.title} cards={list.cards} />
           ))}
       </div>

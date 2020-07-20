@@ -16,10 +16,27 @@ function App() {
     setBoards([...boards, board]);
   };
 
+  const addListToBoard = (boardId, list) => {
+    const targetBoard = boards.filter((board) => boardId === board.id)[0];
+
+    const updatedLists = {
+      ...targetBoard.lists.push(list),
+    };
+
+    const updatedBoard = {
+      ...targetBoard,
+      lists: updatedLists,
+    };
+  };
+
   return (
     <div className='app'>
       <Header />
-      <Home boards={boards} createNewBoard={createNewBoard} />
+      <Home
+        boards={boards}
+        createNewBoard={createNewBoard}
+        addListToBoard={addListToBoard}
+      />
       <Footer />
     </div>
   );
