@@ -6,11 +6,13 @@ const Board = ({ board: { title, lists } }) => {
   return (
     <div>
       <h4>{title}</h4>
-      <p>{Object.keys(lists).length}</p>
-      {/* <div className='list-wrapper'>
+      <p>...</p>
+      <div className='list-wrapper'>
         {lists.length &&
-          lists.map((list) => <List key={list.id} list={list} />)}
-      </div> */}
+          lists.map((list) => (
+            <List key={list.id} title={list.title} cards={list.cards} />
+          ))}
+      </div>
     </div>
   );
 };

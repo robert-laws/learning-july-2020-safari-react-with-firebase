@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
 
-const List = ({ list }) => {
+const List = ({ title, cards }) => {
   return (
     <div className='list'>
-      <h4>{list.title}</h4>
+      <h4>{title}</h4>
       <div className='card'>
-        {list.cards.map((card) => (
+        {cards.map((card) => (
           <Card key={card.id} card={card} />
         ))}
       </div>
@@ -16,7 +16,7 @@ const List = ({ list }) => {
 };
 
 List.propTypes = {
-  list: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default List;
