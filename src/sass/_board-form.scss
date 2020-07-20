@@ -1,0 +1,60 @@
+.create-board-form {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: lighten(#ddd, 8%);
+
+  input[type='text'] {
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 4px;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: 0.3s;
+
+    &:focus {
+      border-color: dodgerblue;
+      box-shadow: 0 0 8px 0 dodgerblue;
+    }
+  }
+
+  input[type='submit'] {
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    margin: 8px 4px;
+    color: #fff;
+    background-color: darken(lightblue, 30%);
+    padding: 8px;
+    transition: 0.3s;
+
+    &:focus,
+    &:hover {
+      cursor: pointer;
+      background-color: darken(lightblue, 50%);
+    }
+  }
+
+  select {
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 4px;
+    padding: 8px;
+    transition: 0.3s;
+
+    &:focus {
+      border-color: dodgerblue;
+      box-shadow: 0 0 8px 0 dodgerblue;
+    }
+  }
+
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+
+    #board-title {
+      flex: 1;
+    }
+  }
+}

@@ -30,14 +30,16 @@ const CreateBoardForm = ({ createNewBoard }) => {
   return (
     <div className='create-board-form'>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='title'>Title:</label>
         <input
+          id='board-title'
           type='text'
           name='title'
           value={board.title}
           onChange={handleChange}
+          placeholder='Board Title'
         />
         <select
+          id='board-background'
           name='background'
           value={board.background}
           onChange={handleChange}
@@ -45,10 +47,10 @@ const CreateBoardForm = ({ createNewBoard }) => {
           <option value=''>Select a Background Color</option>
           <option value='#DDAA11'>Mustard</option>
           <option value='#77AC12'>Green</option>
-          <option value='#4A11CA'>Purple</option>
+          <option value='#FF91CA'>Pink</option>
           <option value='#009991'>Teal</option>
         </select>
-        <input type='submit' value='Create New Board' />
+        <input id='board-submit' type='submit' value='Create New Board' />
       </form>
     </div>
   );
