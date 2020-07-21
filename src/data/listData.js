@@ -1,16 +1,31 @@
 export const listData = [
   {
     id: 1000,
-    title: 'React Section',
+    title: 'React',
     board: 100,
     cards: [
       {
         id: 1,
-        text: 'card number one',
+        text: 'Create components',
       },
       {
         id: 2,
-        text: 'card number two',
+        text: 'Add header and footer sections',
+      },
+    ],
+  },
+  {
+    id: 1100,
+    title: 'Ruby on Rails',
+    board: 100,
+    cards: [
+      {
+        id: 1,
+        text: 'Set up Models',
+      },
+      {
+        id: 2,
+        text: 'Add some controllers',
       },
     ],
   },

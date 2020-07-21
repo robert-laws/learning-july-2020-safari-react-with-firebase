@@ -7,7 +7,6 @@ const CreateBoardForm = ({ createNewBoard }) => {
     id: uuidv4(),
     title: '',
     background: '',
-    lists: [],
   });
 
   const handleChange = (event) => {
@@ -25,7 +24,6 @@ const CreateBoardForm = ({ createNewBoard }) => {
       id: uuidv4(),
       title: '',
       background: '',
-      lists: [],
     });
   };
 

@@ -7,9 +7,9 @@ const Home = ({ boards, createNewBoard, addListToBoard }) => {
   return (
     <section className='home'>
       <CreateBoardForm createNewBoard={createNewBoard} />
-      <div className='boards'>
+      <div className='board-wrapper'>
         {boards.map((board) => (
-          <Board key={board.id} board={board} addListToBoard={addListToBoard} />
+          <Board key={board.id} board={board} />
         ))}
       </div>
     </section>
