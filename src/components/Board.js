@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import List from './List';
-import { v4 as uuidv4 } from 'uuid';
+import CreateListForm from './CreateListForm';
 import { listData } from '../data/listData';
 
 const Board = ({ board: { id, title, background } }) => {
@@ -16,33 +16,9 @@ const Board = ({ board: { id, title, background } }) => {
     return matchList;
   };
 
-  // const [myLists, setMyLists] = useState(lists);
-  // const [newList, setNewList] = useState({
-  //   id: uuidv4(),
-  //   title: '',
-  //   cards: [],
-  // });
-
-  // const handleChange = (event) => {
-  //   setNewList({
-  //     ...newList,
-  //     title: event.target.value,
-  //   });
-  // };
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   addListToBoard(id, newList);
-
-  //   // setMyLists([...myLists, newList]);
-
-  //   setNewList({
-  //     id: uuidv4(),
-  //     title: '',
-  //     cards: [],
-  //   });
-  // };
+  const createNewList = (newList) => {
+    setLists([...lists, newList]);
+  };
 
   return (
     <div className='board' style={{ backgroundColor: `${background}` }}>
@@ -54,6 +30,8 @@ const Board = ({ board: { id, title, background } }) => {
             <List key={list.id} title={list.title} cards={list.cards} />
           ))}
       </div>
+
+      <CreateListForm boardId={id} createNewList={createNewList} />
     </div>
   );
 };

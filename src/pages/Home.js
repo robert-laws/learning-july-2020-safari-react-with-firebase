@@ -3,7 +3,7 @@ import Board from '../components/Board';
 import PropTypes from 'prop-types';
 import CreateBoardForm from '../components/CreateBoardForm';
 
-const Home = ({ boards, createNewBoard, addListToBoard }) => {
+const Home = ({ boards, createNewBoard }) => {
   return (
     <section className='home'>
       <CreateBoardForm createNewBoard={createNewBoard} />
