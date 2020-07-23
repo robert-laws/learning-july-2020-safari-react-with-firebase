@@ -27,7 +27,7 @@ const Board = ({ board: { id, title, background } }) => {
       <div className='list-wrapper'>
         {getListMatches(id) &&
           getListMatches(id).map((list) => (
-            <List key={list.id} title={list.title} cards={list.cards} />
+            <List key={list.id} listId={list.id} title={list.title} />
           ))}
       </div>
 
