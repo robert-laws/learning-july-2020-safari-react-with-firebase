@@ -19,7 +19,7 @@ function App() {
           <Route exact path='/boards/:id'>
             <Board />
           </Route>
-          <Route component={PageNotFound} />
+          <Route path='*' component={PageNotFound} />
         </Switch>
       </Router>
       <Footer />
