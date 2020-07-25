@@ -16,6 +16,10 @@
       border-color: dodgerblue;
       box-shadow: 0 0 8px 0 dodgerblue;
     }
+
+    &.error {
+      border-color: red;
+    }
   }
 
   input[type='submit'] {
@@ -46,6 +50,10 @@
       border-color: dodgerblue;
       box-shadow: 0 0 8px 0 dodgerblue;
     }
+
+    &.error {
+      border-color: red !important;
+    }
   }
 
   form {
@@ -55,6 +63,23 @@
 
     #board-title {
       flex: 1;
+    }
+  }
+
+  #form-message {
+    margin-left: 10px;
+    font: {
+      family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      weight: bold;
+    }
+
+    &.error {
+      color: red;
+      display: block;
+    }
+
+    &.no-error {
+      display: none;
     }
   }
 }

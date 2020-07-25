@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 
 const CreateBoardForm = ({ createNewBoard }) => {
+  const [error, setError] = useState(false);
   const [board, setBoard] = useState({
     id: uuidv4(),
     title: '',
@@ -18,19 +19,26 @@ const CreateBoardForm = ({ createNewBoard }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createNewBoard(board);
 
-    setBoard({
-      id: uuidv4(),
-      title: '',
-      background: '',
-    });
+    if (board.title === '' || board.background === '') {
+      setError(true);
+    } else {
+      setError(false);
+      createNewBoard(board);
+
+      setBoard({
+        id: uuidv4(),
+        title: '',
+        background: '',
+      });
+    }
   };
 
   return (
     <div className='create-board-form'>
       <form onSubmit={handleSubmit}>
         <input
+          className={error ? 'error' : ''}
           id='board-title'
           type='text'
           name='title'
@@ -39,6 +47,7 @@ const CreateBoardForm = ({ createNewBoard }) => {
           placeholder='Board Title'
         />
         <select
+          className={error ? 'error' : ''}
           id='board-background'
           name='background'
           value={board.background}
@@ -52,6 +61,9 @@ const CreateBoardForm = ({ createNewBoard }) => {
         </select>
         <input id='board-submit' type='submit' value='Create New Board' />
       </form>
+      <div id='form-message' className={error ? 'error' : 'no-error'}>
+        Error, please correct the problems highlighted in red and try again.
+      </div>
     </div>
   );
 };
