@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
-import { boardData } from './data/boardData';
 import Header from './components/Header';
 import Home from './pages/Home';
+import Board from './components/Board';
 import Footer from './components/Footer';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
-  const [boards, setBoards] = useState([]);
-
-  useEffect(() => {
-    setBoards(boardData);
-  }, []);
-
-  const createNewBoard = (board) => {
-    setBoards([...boards, board]);
-  };
-
   return (
     <div className='app'>
       <Header />
-      <Home boards={boards} createNewBoard={createNewBoard} />
+      <Router>
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route exact path='/boards/:id'>
+            <Board />
+          </Route>
+          <Route component={PageNotFound} />
+        </Switch>
+      </Router>
       <Footer />
     </div>
   );

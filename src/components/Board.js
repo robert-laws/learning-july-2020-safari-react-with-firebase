@@ -3,41 +3,58 @@ import PropTypes from 'prop-types';
 import List from './List';
 import CreateListForm from './CreateListForm';
 import { listData } from '../data/listData';
+import { useParams } from 'react-router-dom';
+import { boardData } from '../data/boardData';
 
-const Board = ({ board: { id, title, background } }) => {
+const Board = () => {
+  const { id } = useParams();
+
+  const [board, setBoard] = useState({});
   const [lists, setLists] = useState([]);
 
   useEffect(() => {
-    setLists(listData);
+    const board = boardData.find((board) => board.id === parseInt(id));
+    setBoard(board);
   }, []);
 
-  const getListMatches = (boardId) => {
-    const matchList = lists.filter((list) => list.board === boardId);
-    return matchList;
-  };
+  useEffect(() => {
+    const lists = listData.filter((list) => list.board === parseInt(id));
+    setLists(lists);
+  }, [id]);
 
-  const createNewList = (newList) => {
-    setLists([...lists, newList]);
-  };
+  // const getListMatches = (boardId) => {
+  //   const matchList = lists.filter((list) => list.board === boardId);
+  //   return matchList;
+  // };
 
-  return (
-    <div className='board' style={{ backgroundColor: `${background}` }}>
-      <h4>{title}</h4>
+  // const createNewList = (newList) => {
+  //   setLists([...lists, newList]);
+  // };
 
-      <div className='list-wrapper'>
-        {getListMatches(id) &&
-          getListMatches(id).map((list) => (
-            <List key={list.id} listId={list.id} title={list.title} />
-          ))}
+  if (board) {
+    return (
+      <div className='board' style={{ backgroundColor: `${board.background}` }}>
+        <h4>{board.title}</h4>
+
+        <div className='list-wrapper'>
+          {lists &&
+            lists.map((list) => (
+              <List key={list.id} listId={list.id} title={list.title} />
+            ))}
+
+          {lists.length === 0 && <h4>No Lists</h4>}
+        </div>
+
+        {/* <CreateListForm boardId={id} createNewList={createNewList} /> */}
       </div>
-
-      <CreateListForm boardId={id} createNewList={createNewList} />
-    </div>
-  );
+    );
+  } else {
+    return <div>No Board</div>;
+  }
 };
 
-Board.propTypes = {
-  board: PropTypes.object.isRequired,
-};
+// Board.propTypes = {
+//   board: PropTypes.object.isRequired,
+// };
 
 export default Board;

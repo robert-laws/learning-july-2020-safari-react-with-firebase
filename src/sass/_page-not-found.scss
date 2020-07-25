@@ -1,0 +1,14 @@
+.page-not-found {
+  flex: 1 1 auto;
+  border: 1px solid #ccc;
+  padding: 12px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    color: grey;
+  }
+}
