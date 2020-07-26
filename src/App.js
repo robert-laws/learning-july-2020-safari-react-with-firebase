@@ -11,17 +11,19 @@ function App() {
   return (
     <div className='app'>
       <Header />
-      <Router>
-        <Switch>
-          <Route exact path='/'>
-            <Home />
-          </Route>
-          <Route exact path='/boards/:id'>
-            <Board />
-          </Route>
-          <Route path='*' component={PageNotFound} />
-        </Switch>
-      </Router>
+      <div className='home'>
+        <Router>
+          <Switch>
+            <Route exact path='/'>
+              <Home />
+            </Route>
+            <Route exact path='/boards/:id'>
+              <Board />
+            </Route>
+            <Route path='*' component={PageNotFound} />
+          </Switch>
+        </Router>
+      </div>
       <Footer />
     </div>
   );

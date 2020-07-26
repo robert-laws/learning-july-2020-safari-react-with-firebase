@@ -32,6 +32,7 @@ const CreateListForm = ({ boardId, createNewList }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
+        className='create-list-input'
         type='text'
         name='title'
         value={newList.title}

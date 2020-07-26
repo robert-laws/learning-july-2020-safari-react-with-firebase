@@ -24,10 +24,11 @@ const List = ({ listId, title }) => {
     <div className='list'>
       <h4>{title}</h4>
       <div className='card'>
-        {getCardMatches(listId) &&
-          getCardMatches(listId).map((card) => (
-            <Card key={card.id} text={card.text} />
-          ))}
+        {getCardMatches(listId).length > 0
+          ? getCardMatches(listId).map((card) => (
+              <Card key={card.id} text={card.text} />
+            ))
+          : getCardMatches(listId).length === 0 && <span>No Lists</span>}
       </div>
       <CreateCardForm listId={listId} createNewCard={createNewCard} />
     </div>

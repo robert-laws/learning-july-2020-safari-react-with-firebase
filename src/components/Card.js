@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 const Card = ({ text }) => {
   return (
-    <div>
-      <p>{text}</p>
-    </div>
+    <ul>
+      <li>{text}</li>
+    </ul>
   );
 };
 
