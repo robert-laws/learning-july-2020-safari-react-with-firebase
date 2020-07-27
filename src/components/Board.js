@@ -5,22 +5,20 @@ import BoardContext from '../context/boards/boardContext';
 import { useParams } from 'react-router-dom';
 
 const Board = () => {
+  const boardContext = useContext(BoardContext);
+  const { board, getBoardById } = boardContext;
   const { id } = useParams();
 
-  const boardContext = useContext(BoardContext);
-  const { boards, getBoards } = boardContext;
-  const [board, setBoard] = useState({});
-
   useEffect(() => {
-    getBoards();
-  }, []);
+    getBoardById(id);
+  }, [id]);
 
-  useEffect(() => {
-    if (boards !== null) {
-      const boardMatch = boards.find((board) => board.id === parseInt(id));
-      setBoard(boardMatch);
-    }
-  }, [boards]);
+  // useEffect(() => {
+  //   if (boards !== null) {
+  //     const boardMatch = boards.find((board) => board.id === parseInt(id));
+  //     setBoard(boardMatch);
+  //   }
+  // }, [boards]);
 
   if (!board) {
     return (

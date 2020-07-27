@@ -1,4 +1,4 @@
-import { GET_BOARDS, ADD_BOARD } from '../types';
+import { GET_BOARDS, ADD_BOARD, GET_BOARD_BY_ID } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -6,6 +6,14 @@ export default (state, action) => {
       return {
         ...state,
         boards: action.payload,
+      };
+
+    case GET_BOARD_BY_ID:
+      return {
+        ...state,
+        board: state.boards.find(
+          (board) => board.id === parseInt(action.payload)
+        ),
       };
 
     case ADD_BOARD:
