@@ -1,59 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import List from './List';
-import CreateListForm from './CreateListForm';
+import React, { useState, useContext, useEffect } from 'react';
+import BoardContext from '../context/boards/boardContext';
+// import List from './List';
+// import CreateListForm from './CreateListForm';
 import { useParams } from 'react-router-dom';
-import { listData } from '../data/listData';
-import { boardData } from '../data/boardData';
 
 const Board = () => {
   const { id } = useParams();
 
+  const boardContext = useContext(BoardContext);
+  const { boards, getBoards } = boardContext;
   const [board, setBoard] = useState({});
-  const [lists, setLists] = useState([]);
 
   useEffect(() => {
-    const board = boardData.find((board) => board.id === parseInt(id));
-    setBoard(board);
-  }, [id]);
+    getBoards();
+  }, []);
 
   useEffect(() => {
-    const lists = listData.filter((list) => list.board === parseInt(id));
-    setLists(lists);
-  }, [id]);
+    if (boards !== null) {
+      const boardMatch = boards.find((board) => board.id === parseInt(id));
+      setBoard(boardMatch);
+    }
+  }, [boards]);
 
-  const createNewList = (newList) => {
-    setLists([...lists, newList]);
-  };
-
-  if (board) {
+  if (!board) {
     return (
-      <div className='board-wrapper'>
-        <div
-          className='board'
-          style={{ backgroundColor: `${board.background}` }}
-        >
-          <h4>{board.title}</h4>
-
-          <div className='list-wrapper'>
-            {lists &&
-              lists.map((list) => (
-                <List key={list.id} listId={list.id} title={list.title} />
-              ))}
-
-            {lists.length === 0 && (
-              <div className='board-no-lists'>
-                <h4>No Lists</h4>
-              </div>
-            )}
-          </div>
-
-          <CreateListForm boardId={id} createNewList={createNewList} />
-        </div>
+      <div>
+        <h4>No Board Found</h4>
       </div>
     );
-  } else {
-    return <div>No Board</div>;
   }
+
+  return (
+    <div className='board-wrapper'>
+      <div className='board' style={{ backgroundColor: `${board.background}` }}>
+        <h4>{board.title}</h4>
+
+        {/* <div className='list-wrapper'>
+          {lists &&
+            lists.map((list) => (
+              <List key={list.id} listId={list.id} title={list.title} />
+            ))}
+
+          {lists.length === 0 && (
+            <div className='board-no-lists'>
+              <h4>No Lists</h4>
+            </div>
+          )}
+        </div> */}
+
+        {/* <CreateListForm boardId={id} createNewList={createNewList} />*/}
+      </div>
+    </div>
+  );
 };
 
 export default Board;

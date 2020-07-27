@@ -1,4 +1,4 @@
-import react, { useReducer } from 'react';
+import React, { useReducer } from 'react';
 import BoardContext from './boardContext';
 import boardReducer from './boardReducer';
 import { GET_BOARDS, ADD_BOARD } from '../types';
@@ -7,6 +7,7 @@ import { boards } from '../data/boardData';
 const BoardState = ({ children }) => {
   const initialState = {
     boards: null,
+    board: null,
   };
 
   const [state, dispatch] = useReducer(boardReducer, initialState);
