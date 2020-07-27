@@ -1,4 +1,4 @@
-export const boardData = [
+export const boards = [
   {
     id: 100,
     title: 'Programming Ideas',
