@@ -6,19 +6,20 @@ import { useParams } from 'react-router-dom';
 
 const Board = () => {
   const boardContext = useContext(BoardContext);
-  const { board, getBoardById } = boardContext;
+  const { boards, getBoards } = boardContext;
   const { id } = useParams();
+  const [board, setBoard] = useState({});
 
   useEffect(() => {
-    getBoardById(id);
-  }, [id]);
+    getBoards();
+  }, []);
 
-  // useEffect(() => {
-  //   if (boards !== null) {
-  //     const boardMatch = boards.find((board) => board.id === parseInt(id));
-  //     setBoard(boardMatch);
-  //   }
-  // }, [boards]);
+  useEffect(() => {
+    if (boards !== null) {
+      const myBoard = boards.find((board) => board.id === parseInt(id));
+      setBoard(myBoard);
+    }
+  }, [boards]);
 
   if (!board) {
     return (
