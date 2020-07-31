@@ -3,20 +3,17 @@ import BoardContext from '../context/boards/boardContext';
 // import List from './List';
 // import CreateListForm from './CreateListForm';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Board = () => {
   const boardContext = useContext(BoardContext);
-  const { boards, getBoards } = boardContext;
+  const { boards } = boardContext;
   const { id } = useParams();
   const [board, setBoard] = useState({});
 
   useEffect(() => {
-    getBoards();
-  }, []);
-
-  useEffect(() => {
     if (boards !== null) {
-      const myBoard = boards.find((board) => board.id === parseInt(id));
+      const myBoard = boards.find((board) => board.id === id);
       setBoard(myBoard);
     }
   }, [boards]);
@@ -31,6 +28,7 @@ const Board = () => {
 
   return (
     <div className='board-wrapper'>
+      <Link to='/'>Return to Board List</Link>
       <div className='board' style={{ backgroundColor: `${board.background}` }}>
         <h4>{board.title}</h4>
 

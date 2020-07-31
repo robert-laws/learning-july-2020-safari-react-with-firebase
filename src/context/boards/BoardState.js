@@ -6,14 +6,14 @@ import { boards } from '../data/boardData';
 
 const BoardState = ({ children }) => {
   const initialState = {
-    boards: null,
+    boards: boards,
     board: null,
   };
 
   const [state, dispatch] = useReducer(boardReducer, initialState);
 
   const getBoards = () => {
-    dispatch({ type: GET_BOARDS, payload: boards });
+    dispatch({ type: GET_BOARDS });
   };
 
   const getBoardById = (id) => {
