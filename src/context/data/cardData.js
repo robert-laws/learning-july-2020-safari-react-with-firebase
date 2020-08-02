@@ -12,11 +12,11 @@ export const cards = [
   {
     id: '3',
     list: '1100',
-    text: 'Set up Models',
+    text: 'Remove trash piles',
   },
   {
     id: '4',
     list: '1100',
-    text: 'Add some controllers',
+    text: 'Paint the fence a new color',
   },
 ];

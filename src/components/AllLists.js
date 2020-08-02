@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import ListContext from '../context/lists/listContext';
 import List from './List';
+// import CreateCardForm from './CreateCardForm';
 
 const AllLists = ({ boardId }) => {
   const listContext = useContext(ListContext);
@@ -25,6 +26,7 @@ const AllLists = ({ boardId }) => {
     return (
       <div>
         <h4>No Lists Found</h4>
+        {/*<CreateCardForm listId={listId} createNewCard={createNewCard} /> */}
       </div>
     );
   }
@@ -35,6 +37,7 @@ const AllLists = ({ boardId }) => {
         myList.map((list) => (
           <List key={list.id} listId={list.id} title={list.title} />
         ))}
+      {/*<CreateCardForm listId={listId} createNewCard={createNewCard} /> */}
     </div>
   );
 };
