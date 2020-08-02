@@ -7,7 +7,6 @@ import { boards } from '../data/boardData';
 const BoardState = ({ children }) => {
   const initialState = {
     boards: boards,
-    board: null,
   };
 
   const [state, dispatch] = useReducer(boardReducer, initialState);
@@ -28,7 +27,6 @@ const BoardState = ({ children }) => {
     <BoardContext.Provider
       value={{
         boards: state.boards,
-        board: state.board,
         getBoards,
         getBoardById,
         addBoard,

@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import BoardContext from '../context/boards/boardContext';
-// import List from './List';
-// import CreateListForm from './CreateListForm';
+import AllList from './AllLists';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -16,7 +15,7 @@ const Board = () => {
       const myBoard = boards.find((board) => board.id === id);
       setBoard(myBoard);
     }
-  }, [boards]);
+  }, [id, boards]);
 
   if (!board) {
     return (
@@ -28,22 +27,14 @@ const Board = () => {
 
   return (
     <div className='board-wrapper'>
-      <Link to='/'>Return to Board List</Link>
+      <div className='home-link'>
+        <Link to='/'>Return to Board List</Link>
+      </div>
       <div className='board' style={{ backgroundColor: `${board.background}` }}>
         <h4>{board.title}</h4>
-
-        {/* <div className='list-wrapper'>
-          {lists &&
-            lists.map((list) => (
-              <List key={list.id} listId={list.id} title={list.title} />
-            ))}
-
-          {lists.length === 0 && (
-            <div className='board-no-lists'>
-              <h4>No Lists</h4>
-            </div>
-          )}
-        </div> */}
+      </div>
+      <div className='list-wrapper'>
+        <AllList boardId={board.id} />
 
         {/* <CreateListForm boardId={id} createNewList={createNewList} />*/}
       </div>

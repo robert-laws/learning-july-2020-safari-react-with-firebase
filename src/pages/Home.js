@@ -8,9 +8,9 @@ const Home = () => {
 
   const { boards, getBoards, addBoard } = boardContext;
 
-  useEffect(() => {
-    getBoards();
-  }, []);
+  // useEffect(() => {
+  //   getBoards();
+  // }, []);
 
   const createNewBoard = (board) => {
     addBoard(board);
@@ -28,17 +28,19 @@ const Home = () => {
     <section>
       <CreateBoardForm createNewBoard={createNewBoard} />
       <div className='board-wrapper'>
-        {boards !== null &&
-          boards.map((board) => (
-            <Link key={board.id} to={`/boards/${board.id}`}>
-              <div
-                className='board-list-item'
-                style={{ backgroundColor: `${board.background}` }}
-              >
-                {board.title}
-              </div>
-            </Link>
-          ))}
+        <div className='all-boards'>
+          {boards !== null &&
+            boards.map((board) => (
+              <Link key={board.id} to={`/boards/${board.id}`}>
+                <div
+                  className='board-list-item'
+                  style={{ backgroundColor: `${board.background}` }}
+                >
+                  {board.title}
+                </div>
+              </Link>
+            ))}
+        </div>
       </div>
     </section>
   );
