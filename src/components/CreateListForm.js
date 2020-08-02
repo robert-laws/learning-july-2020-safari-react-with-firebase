@@ -29,7 +29,7 @@ const CreateListForm = ({ boardId, createNewList }) => {
 
     setNewList({
       id: uuidv4(),
-      board: '',
+      board: boardId,
       title: '',
     });
   };

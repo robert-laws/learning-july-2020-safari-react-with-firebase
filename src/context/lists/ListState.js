@@ -20,7 +20,6 @@ const ListState = ({ children }) => {
   };
 
   const addList = (list) => {
-    console.log(list);
     dispatch({ type: ADD_LIST, payload: list });
   };
 

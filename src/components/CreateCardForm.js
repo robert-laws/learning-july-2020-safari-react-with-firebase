@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 const CreateCardForm = ({ listId, createNewCard }) => {
   const [newCard, setNewCard] = useState({
     id: uuidv4(),
-    list: listId,
+    list: '',
     text: '',
   });
+
+  useEffect(() => {
+    setNewCard({
+      ...newCard,
+      list: listId,
+    });
+  }, [listId]);
 
   const handleChange = (event) => {
     setNewCard({
       ...newCard,
-      text: event.target.value,
+      [event.target.name]: event.target.value,
     });
   };
 

@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import CardContext from '../context/cards/cardContext';
 import Card from './Card';
+import CreateCardForm from './CreateCardForm';
 
 const AllCards = ({ listId }) => {
   const cardContext = useContext(CardContext);
-  const { cards } = cardContext;
+  const { cards, addCard } = cardContext;
 
   const [myCards, setMyCards] = useState([]);
 
@@ -17,10 +18,15 @@ const AllCards = ({ listId }) => {
     }
   }, [listId, cards]);
 
+  const createNewCard = (card) => {
+    addCard(card);
+  };
+
   if (myCards.length === 0) {
     return (
       <div className='card'>
         <h4>No Cards Found</h4>
+        <CreateCardForm listId={listId} createNewCard={createNewCard} />
       </div>
     );
   }
@@ -29,6 +35,7 @@ const AllCards = ({ listId }) => {
     <div className='card'>
       {myCards &&
         myCards.map((card) => <Card key={card.id} text={card.text} />)}
+      <CreateCardForm listId={listId} createNewCard={createNewCard} />
     </div>
   );
 };
