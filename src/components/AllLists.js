@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import ListContext from '../context/lists/listContext';
 import List from './List';
-// import CreateCardForm from './CreateCardForm';
+import CreateCardForm from './CreateCardForm';
+import CreateListForm from './CreateListForm';
 
 const AllLists = ({ boardId }) => {
   const listContext = useContext(ListContext);
-  const { lists } = listContext;
+  const { lists, addList } = listContext;
 
   const [myList, setMyList] = useState([]);
 
@@ -22,11 +23,15 @@ const AllLists = ({ boardId }) => {
     }
   }, [boardId, lists]);
 
+  const createNewList = (list) => {
+    addList(list);
+  };
+
   if (myList.length === 0) {
     return (
       <div>
         <h4>No Lists Found</h4>
-        {/*<CreateCardForm listId={listId} createNewCard={createNewCard} /> */}
+        <CreateListForm boardId={boardId} createNewList={createNewList} />
       </div>
     );
   }
@@ -37,7 +42,7 @@ const AllLists = ({ boardId }) => {
         myList.map((list) => (
           <List key={list.id} listId={list.id} title={list.title} />
         ))}
-      {/*<CreateCardForm listId={listId} createNewCard={createNewCard} /> */}
+      <CreateListForm boardId={boardId} createNewList={createNewList} />
     </div>
   );
 };

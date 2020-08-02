@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import ListContext from './listContext';
 import listReducer from './listReducer';
-import { GET_LISTS, GET_LISTS_BY_BOARD_ID } from '../types';
+import { GET_LISTS, GET_LISTS_BY_BOARD_ID, ADD_LIST } from '../types';
 import { lists } from '../data/listData';
 
 const ListState = ({ children }) => {
@@ -19,12 +19,18 @@ const ListState = ({ children }) => {
     dispatch({ type: GET_LISTS_BY_BOARD_ID, payload: id });
   };
 
+  const addList = (list) => {
+    console.log(list);
+    dispatch({ type: ADD_LIST, payload: list });
+  };
+
   return (
     <ListContext.Provider
       value={{
         lists: state.lists,
         getLists,
         getListByBoardId,
+        addList,
       }}
     >
       {children}

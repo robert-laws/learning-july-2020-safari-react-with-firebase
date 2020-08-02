@@ -1,4 +1,4 @@
-import { GET_LISTS, GET_LISTS_BY_BOARD_ID } from '../types';
+import { GET_LISTS, GET_LISTS_BY_BOARD_ID, ADD_LIST } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -12,6 +12,12 @@ export default (state, action) => {
       return {
         ...state,
         lists: state.lists.filter((list) => list.board === action.payload),
+      };
+
+    case ADD_LIST:
+      return {
+        ...state,
+        lists: [...state.lists, action.payload],
       };
 
     default:

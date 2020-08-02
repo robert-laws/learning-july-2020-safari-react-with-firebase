@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 const CreateListForm = ({ boardId, createNewList }) => {
   const [newList, setNewList] = useState({
     id: uuidv4(),
-    board: boardId,
+    board: '',
     title: '',
-    cards: [],
   });
+
+  useEffect(() => {
+    setNewList({
+      ...newList,
+      board: boardId,
+    });
+  }, [boardId]);
 
   const handleChange = (event) => {
     setNewList({
       ...newList,
-      title: event.target.value,
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -23,9 +29,8 @@ const CreateListForm = ({ boardId, createNewList }) => {
 
     setNewList({
       id: uuidv4(),
-      board: boardId,
+      board: '',
       title: '',
-      cards: [],
     });
   };
 
