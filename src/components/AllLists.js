@@ -4,7 +4,7 @@ import List from './List';
 
 const AllLists = ({ boardId }) => {
   const listContext = useContext(ListContext);
-  const { lists, getLists } = listContext;
+  const { lists } = listContext;
 
   const [myList, setMyList] = useState([]);
 
@@ -15,15 +15,13 @@ const AllLists = ({ boardId }) => {
   useEffect(() => {
     if (boardId !== null) {
       const list = lists.filter((list) => {
-        console.log(list.board);
-        console.log(boardId);
         return list.board === boardId;
       });
       setMyList(list);
     }
   }, [boardId, lists]);
 
-  if (lists.length === 0) {
+  if (myList.length === 0) {
     return (
       <div>
         <h4>No Lists Found</h4>
