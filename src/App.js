@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
 import BoardState from './context/boards/BoardState';
 import ListState from './context/lists/ListState';
+import CardContext from './context/cards/CardState';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Board from './components/Board';
@@ -16,17 +17,19 @@ function App() {
       <div className='home'>
         <BoardState>
           <ListState>
-            <Router>
-              <Switch>
-                <Route exact path='/'>
-                  <Home />
-                </Route>
-                <Route exact path='/boards/:id'>
-                  <Board />
-                </Route>
-                <Route path='*' component={PageNotFound} />
-              </Switch>
-            </Router>
+            <CardContext>
+              <Router>
+                <Switch>
+                  <Route exact path='/'>
+                    <Home />
+                  </Route>
+                  <Route exact path='/boards/:id'>
+                    <Board />
+                  </Route>
+                  <Route path='*' component={PageNotFound} />
+                </Switch>
+              </Router>
+            </CardContext>
           </ListState>
         </BoardState>
       </div>

@@ -8,3 +8,4 @@ export const GET_LISTS = 'GET_LISTS';
 export const GET_LISTS_BY_BOARD_ID = 'GET_LISTS_BY_BOARD_ID';
 
 // CARD Types
+export const GET_CARDS = 'GET_CARDS';
