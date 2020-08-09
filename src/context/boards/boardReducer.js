@@ -11,9 +11,7 @@ export default (state, action) => {
     case GET_BOARD_BY_ID:
       return {
         ...state,
-        board: state.boards.find(
-          (board) => board.id === parseInt(action.payload)
-        ),
+        board: action.payload,
       };
 
     case ADD_BOARD:

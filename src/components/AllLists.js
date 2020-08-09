@@ -2,31 +2,43 @@ import React, { useState, useContext, useEffect } from 'react';
 import ListContext from '../context/lists/listContext';
 import List from './List';
 import CreateListForm from './CreateListForm';
+import spinner from '../img/spinner.gif';
 
 const AllLists = ({ boardId }) => {
   const listContext = useContext(ListContext);
-  const { lists, getLists, addList } = listContext;
+  const { lists, getListByBoardId, addList } = listContext;
 
-  const [myList, setMyList] = useState([]);
+  const [isSpinning, setIsSpinning] = useState(true);
+
+  // useEffect(() => {
+  //   getLists();
+  // }, []);
+
+  // useEffect(() => {
+  //   if (boardId !== null) {
+  //     const list = lists.filter((list) => {
+  //       return list.board === boardId;
+  //     });
+  //     setMyList(list);
+  //   }
+  // }, [boardId, lists]);
 
   useEffect(() => {
-    getLists();
-  }, []);
+    const fetchLists = async () => {
+      if (boardId !== undefined) {
+        await getListByBoardId(boardId);
+        await setIsSpinning(false);
+      }
+    };
 
-  useEffect(() => {
-    if (boardId !== null) {
-      const list = lists.filter((list) => {
-        return list.board === boardId;
-      });
-      setMyList(list);
-    }
-  }, [boardId, lists]);
+    fetchLists();
+  }, [boardId]);
 
   const createNewList = (list) => {
     addList(list);
   };
 
-  if (myList.length === 0) {
+  if (lists.length === 0) {
     return (
       <div>
         <h4>No Lists Found</h4>
@@ -37,8 +49,15 @@ const AllLists = ({ boardId }) => {
 
   return (
     <div>
-      {myList &&
-        myList.map((list) => (
+      {isSpinning && (
+        <div>
+          <img src={spinner} />
+        </div>
+      )}
+
+      {!isSpinning &&
+        lists &&
+        lists.map((list) => (
           <List key={list.id} listId={list.id} title={list.title} />
         ))}
       <CreateListForm boardId={boardId} createNewList={createNewList} />

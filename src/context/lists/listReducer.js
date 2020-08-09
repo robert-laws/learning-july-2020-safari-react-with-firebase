@@ -11,7 +11,7 @@ export default (state, action) => {
     case GET_LISTS_BY_BOARD_ID:
       return {
         ...state,
-        lists: state.lists.filter((list) => list.board === action.payload),
+        lists: action.payload,
       };
 
     case ADD_LIST:

@@ -8,6 +8,7 @@ import { boardsRef } from '../../firebase';
 const BoardState = ({ children }) => {
   const initialState = {
     boards: [],
+    board: [],
   };
 
   const [state, dispatch] = useReducer(boardReducer, initialState);
@@ -25,8 +26,13 @@ const BoardState = ({ children }) => {
     }
   };
 
-  const getBoardById = (id) => {
-    dispatch({ type: GET_BOARD_BY_ID, payload: id });
+  const getBoardById = async (id) => {
+    try {
+      const board = await boardsRef.doc(id).get();
+      dispatch({ type: GET_BOARD_BY_ID, payload: board });
+    } catch (error) {
+      console.error('Error getting board: ', error);
+    }
   };
 
   const addBoard = async (board) => {

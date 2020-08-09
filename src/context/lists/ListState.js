@@ -25,8 +25,17 @@ const ListState = ({ children }) => {
     }
   };
 
-  const getListByBoardId = (id) => {
-    dispatch({ type: GET_LISTS_BY_BOARD_ID, payload: id });
+  const getListByBoardId = async (id) => {
+    try {
+      const listsData = await listsRef.where('list.board', '==', id).get();
+      const lists = listsData.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data().list,
+      }));
+      dispatch({ type: GET_LISTS_BY_BOARD_ID, payload: lists });
+    } catch (error) {
+      console.error('Error retrieving lists by board id: ', error);
+    }
   };
 
   const addList = async (list) => {
