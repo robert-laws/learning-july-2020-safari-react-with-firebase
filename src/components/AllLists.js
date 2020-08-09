@@ -5,13 +5,13 @@ import CreateListForm from './CreateListForm';
 
 const AllLists = ({ boardId }) => {
   const listContext = useContext(ListContext);
-  const { lists, addList } = listContext;
+  const { lists, getLists, addList } = listContext;
 
   const [myList, setMyList] = useState([]);
 
-  // useEffect(() => {
-  //   getLists();
-  // }, []);
+  useEffect(() => {
+    getLists();
+  }, []);
 
   useEffect(() => {
     if (boardId !== null) {

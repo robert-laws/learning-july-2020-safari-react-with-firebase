@@ -5,9 +5,13 @@ import CreateCardForm from './CreateCardForm';
 
 const AllCards = ({ listId }) => {
   const cardContext = useContext(CardContext);
-  const { cards, addCard } = cardContext;
+  const { cards, getCards, addCard } = cardContext;
 
   const [myCards, setMyCards] = useState([]);
+
+  useEffect(() => {
+    getCards();
+  }, []);
 
   useEffect(() => {
     if (listId !== null) {

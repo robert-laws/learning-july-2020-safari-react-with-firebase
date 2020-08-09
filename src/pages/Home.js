@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import BoardContext from '../context/boards/boardContext';
 import { Link } from 'react-router-dom';
 import CreateBoardForm from '../components/CreateBoardForm';
@@ -6,11 +6,7 @@ import CreateBoardForm from '../components/CreateBoardForm';
 const Home = () => {
   const boardContext = useContext(BoardContext);
 
-  const { boards, getBoards, addBoard } = boardContext;
-
-  // useEffect(() => {
-  //   getBoards();
-  // }, []);
+  const { boards, addBoard } = boardContext;
 
   const createNewBoard = (board) => {
     addBoard(board);

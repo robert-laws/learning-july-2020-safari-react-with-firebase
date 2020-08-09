@@ -5,7 +5,7 @@ export default (state, action) => {
     case GET_LISTS:
       return {
         ...state,
-        lists: state.lists,
+        lists: action.payload,
       };
 
     case GET_LISTS_BY_BOARD_ID:

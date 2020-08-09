@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 const CreateCardForm = ({ listId, createNewCard }) => {
   const [newCard, setNewCard] = useState({
-    id: uuidv4(),
     list: '',
     text: '',
   });
@@ -28,7 +26,6 @@ const CreateCardForm = ({ listId, createNewCard }) => {
     createNewCard(newCard);
 
     setNewCard({
-      id: uuidv4(),
       list: listId,
       text: '',
     });

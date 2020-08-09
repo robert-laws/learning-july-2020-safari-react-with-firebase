@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 
 const CreateBoardForm = ({ createNewBoard }) => {
   const [error, setError] = useState(false);
   const [board, setBoard] = useState({
-    id: uuidv4(),
+    // id: uuidv4(),
     title: '',
     background: '',
   });
@@ -27,7 +27,7 @@ const CreateBoardForm = ({ createNewBoard }) => {
       createNewBoard(board);
 
       setBoard({
-        id: uuidv4(),
+        // id: uuidv4(),
         title: '',
         background: '',
       });
