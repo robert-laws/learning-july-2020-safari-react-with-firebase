@@ -19,11 +19,17 @@
       padding: 10px;
       border-radius: 5px;
 
+      button {
+        float: right;
+      }
+
       ul {
         margin-left: 18px;
 
         li {
           margin: 4px 0;
+          float: left;
+          clear: both;
         }
       }
     }

@@ -2,10 +2,11 @@ import React, { useState, useContext, useEffect } from 'react';
 import CardContext from '../context/cards/cardContext';
 import Card from './Card';
 import CreateCardForm from './CreateCardForm';
+import DeleteButton from './DeleteButton';
 
 const AllCards = ({ listId }) => {
   const cardContext = useContext(CardContext);
-  const { cards, getCards, addCard } = cardContext;
+  const { cards, getCards, addCard, deleteCard } = cardContext;
 
   const [myCards, setMyCards] = useState([]);
 
@@ -38,7 +39,16 @@ const AllCards = ({ listId }) => {
   return (
     <div className='card'>
       {myCards &&
-        myCards.map((card) => <Card key={card.id} text={card.text} />)}
+        myCards.map((card) => (
+          <div key={card.id}>
+            <Card text={card.text} />
+            <DeleteButton
+              deleteFunction={deleteCard}
+              type='Card'
+              id={card.id}
+            />
+          </div>
+        ))}
       <CreateCardForm listId={listId} createNewCard={createNewCard} />
     </div>
   );

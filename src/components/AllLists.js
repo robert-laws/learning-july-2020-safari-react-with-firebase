@@ -60,7 +60,9 @@ const AllLists = ({ boardId }) => {
         lists.map((list) => (
           <List key={list.id} listId={list.id} title={list.title} />
         ))}
-      <CreateListForm boardId={boardId} createNewList={createNewList} />
+      <div>
+        <CreateListForm boardId={boardId} createNewList={createNewList} />
+      </div>
     </div>
   );
 };
