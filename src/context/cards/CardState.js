@@ -1,7 +1,12 @@
 import React, { useReducer } from 'react';
 import CardContext from './cardContext';
 import cardReducer from './cardReducer';
-import { GET_CARDS, ADD_CARD, DELETE_CARD } from '../types';
+import {
+  GET_CARDS,
+  ADD_CARD,
+  DELETE_CARD,
+  DELETE_CARD_BY_LIST_ID,
+} from '../types';
 // import { cards } from '../data/cardData';
 import { cardsRef } from '../../firebase';
 
@@ -48,6 +53,21 @@ const CardState = ({ children }) => {
     }
   };
 
+  const deleteCardByListId = async (id) => {
+    try {
+      const cards = await cardsRef.where('card.list', '==', id).get();
+      // console.log(cards.docs.length);
+      if (cards.docs.length !== 0) {
+        cards.forEach((card) => {
+          card.ref.delete();
+          dispatch({ type: DELETE_CARD_BY_LIST_ID, payload: id });
+        });
+      }
+    } catch (error) {
+      console.error('Error deleting card: ', error);
+    }
+  };
+
   return (
     <CardContext.Provider
       value={{
@@ -55,6 +75,7 @@ const CardState = ({ children }) => {
         getCards,
         addCard,
         deleteCard,
+        deleteCardByListId,
       }}
     >
       {children}

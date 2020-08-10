@@ -3,10 +3,14 @@ import ListContext from '../context/lists/listContext';
 import List from './List';
 import CreateListForm from './CreateListForm';
 import spinner from '../img/spinner.gif';
+import DeleteButton from './DeleteButton';
+import CardContext from '../context/cards/cardContext';
 
 const AllLists = ({ boardId }) => {
   const listContext = useContext(ListContext);
-  const { lists, getListByBoardId, addList } = listContext;
+  const { lists, getListByBoardId, addList, deleteList } = listContext;
+  const cardContext = useContext(CardContext);
+  const { deleteCardByListId } = cardContext;
 
   const [isSpinning, setIsSpinning] = useState(true);
 
@@ -27,7 +31,7 @@ const AllLists = ({ boardId }) => {
     const fetchLists = async () => {
       if (boardId !== undefined) {
         await getListByBoardId(boardId);
-        await setIsSpinning(false);
+        setIsSpinning(false);
       }
     };
 
@@ -58,7 +62,15 @@ const AllLists = ({ boardId }) => {
       {!isSpinning &&
         lists &&
         lists.map((list) => (
-          <List key={list.id} listId={list.id} title={list.title} />
+          <div key={list.id}>
+            <List listId={list.id} title={list.title}>
+              <DeleteButton
+                deleteFunctions={[deleteCardByListId, deleteList]}
+                type='List'
+                id={list.id}
+              />
+            </List>
+          </div>
         ))}
       <div>
         <CreateListForm boardId={boardId} createNewList={createNewList} />

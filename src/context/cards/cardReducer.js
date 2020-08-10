@@ -1,4 +1,9 @@
-import { GET_CARDS, ADD_CARD, DELETE_CARD } from '../types';
+import {
+  GET_CARDS,
+  ADD_CARD,
+  DELETE_CARD,
+  DELETE_CARD_BY_LIST_ID,
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -18,6 +23,12 @@ export default (state, action) => {
       return {
         ...state,
         cards: [...state.cards.filter((card) => card.id !== action.payload)],
+      };
+
+    case DELETE_CARD_BY_LIST_ID:
+      return {
+        ...state,
+        cards: [...state.cards.filter((card) => card.list !== action.payload)],
       };
 
     default:

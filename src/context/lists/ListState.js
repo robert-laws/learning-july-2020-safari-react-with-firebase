@@ -1,9 +1,14 @@
 import React, { useReducer } from 'react';
 import ListContext from './listContext';
 import listReducer from './listReducer';
-import { GET_LISTS, GET_LISTS_BY_BOARD_ID, ADD_LIST } from '../types';
+import {
+  GET_LISTS,
+  GET_LISTS_BY_BOARD_ID,
+  ADD_LIST,
+  DELETE_LIST,
+} from '../types';
 // import { lists } from '../data/listData';
-import { listsRef } from '../../firebase';
+import { listsRef, cardsRef } from '../../firebase';
 
 const ListState = ({ children }) => {
   const initialState = {
@@ -51,6 +56,16 @@ const ListState = ({ children }) => {
     }
   };
 
+  const deleteList = async (id) => {
+    try {
+      const list = listsRef.doc(id);
+      await list.delete();
+      dispatch({ type: DELETE_LIST, payload: id });
+    } catch (error) {
+      console.error('Error deleting list: ', error);
+    }
+  };
+
   return (
     <ListContext.Provider
       value={{
@@ -58,6 +73,7 @@ const ListState = ({ children }) => {
         getLists,
         getListByBoardId,
         addList,
+        deleteList,
       }}
     >
       {children}

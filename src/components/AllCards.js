@@ -43,7 +43,7 @@ const AllCards = ({ listId }) => {
           <div key={card.id}>
             <Card text={card.text} />
             <DeleteButton
-              deleteFunction={deleteCard}
+              deleteFunctions={[deleteCard]}
               type='Card'
               id={card.id}
             />
