@@ -3,10 +3,11 @@ import BoardContext from '../context/boards/boardContext';
 import AllList from './AllLists';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import DeleteButton from './DeleteButton';
 
 const Board = () => {
   const boardContext = useContext(BoardContext);
-  const { boards } = boardContext;
+  const { boards, deleteBoard } = boardContext;
   const { id } = useParams();
   const [board, setBoard] = useState({});
 
@@ -32,6 +33,11 @@ const Board = () => {
       </div>
       <div className='board' style={{ backgroundColor: `${board.background}` }}>
         <h4>{board.title}</h4>
+        <DeleteButton
+          deleteFunctions={[deleteBoard]}
+          type='Board'
+          id={board.id}
+        />
       </div>
       <div className='list-wrapper'>
         <AllList boardId={board.id} />

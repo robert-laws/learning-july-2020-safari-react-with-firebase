@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import BoardContext from './boardContext';
 import boardReducer from './boardReducer';
-import { GET_BOARDS, ADD_BOARD, GET_BOARD_BY_ID } from '../types';
+import { GET_BOARDS, ADD_BOARD, GET_BOARD_BY_ID, DELETE_BOARD } from '../types';
 // import { boards } from '../data/boardData';
 import { boardsRef } from '../../firebase';
 
@@ -48,6 +48,16 @@ const BoardState = ({ children }) => {
     }
   };
 
+  const deleteBoard = async (id) => {
+    try {
+      const board = boardsRef.doc(id);
+      await board.delete();
+      dispatch({ type: DELETE_BOARD, payload: id });
+    } catch (error) {
+      console.error('Error creating new board: ', error);
+    }
+  };
+
   return (
     <BoardContext.Provider
       value={{
@@ -55,6 +65,7 @@ const BoardState = ({ children }) => {
         getBoards,
         getBoardById,
         addBoard,
+        deleteBoard,
       }}
     >
       {children}

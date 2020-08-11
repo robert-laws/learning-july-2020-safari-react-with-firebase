@@ -1,4 +1,4 @@
-import { GET_BOARDS, ADD_BOARD, GET_BOARD_BY_ID } from '../types';
+import { GET_BOARDS, ADD_BOARD, GET_BOARD_BY_ID, DELETE_BOARD } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -18,6 +18,14 @@ export default (state, action) => {
       return {
         ...state,
         boards: [...state.boards, action.payload],
+      };
+
+    case DELETE_BOARD:
+      return {
+        ...state,
+        boards: [
+          ...state.boards.filter((board) => board.id !== action.payload),
+        ],
       };
 
     default:
