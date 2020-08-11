@@ -6,9 +6,10 @@ import {
   GET_LISTS_BY_BOARD_ID,
   ADD_LIST,
   DELETE_LIST,
+  DELETE_LIST_BY_BOARD_ID,
 } from '../types';
 // import { lists } from '../data/listData';
-import { listsRef, cardsRef } from '../../firebase';
+import { listsRef } from '../../firebase';
 
 const ListState = ({ children }) => {
   const initialState = {
@@ -66,6 +67,20 @@ const ListState = ({ children }) => {
     }
   };
 
+  const deleteListByBoardId = async (id) => {
+    try {
+      const lists = await listsRef.where('list.board', '==', id).get();
+      if (lists.docs.length !== 0) {
+        lists.forEach((list) => {
+          list.ref.delete();
+          dispatch({ type: DELETE_LIST_BY_BOARD_ID, payload: id });
+        });
+      }
+    } catch (error) {
+      console.error('Error deleting list: ', error);
+    }
+  };
+
   return (
     <ListContext.Provider
       value={{
@@ -74,6 +89,7 @@ const ListState = ({ children }) => {
         getListByBoardId,
         addList,
         deleteList,
+        deleteListByBoardId,
       }}
     >
       {children}

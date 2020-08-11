@@ -3,6 +3,7 @@ import {
   GET_LISTS_BY_BOARD_ID,
   ADD_LIST,
   DELETE_LIST,
+  DELETE_LIST_BY_BOARD_ID,
 } from '../types';
 
 export default (state, action) => {
@@ -29,6 +30,12 @@ export default (state, action) => {
       return {
         ...state,
         lists: [...state.lists.filter((list) => list.id !== action.payload)],
+      };
+
+    case DELETE_LIST_BY_BOARD_ID:
+      return {
+        ...state,
+        lists: [...state.lists.filter((list) => list.board !== action.payload)],
       };
 
     default:

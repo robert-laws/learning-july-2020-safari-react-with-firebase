@@ -1,14 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
 import ListContext from '../context/lists/listContext';
+import CardContext from '../context/cards/cardContext';
 import List from './List';
 import CreateListForm from './CreateListForm';
 import spinner from '../img/spinner.gif';
 import DeleteButton from './DeleteButton';
-import CardContext from '../context/cards/cardContext';
 
 const AllLists = ({ boardId }) => {
   const listContext = useContext(ListContext);
   const { lists, getListByBoardId, addList, deleteList } = listContext;
+
   const cardContext = useContext(CardContext);
   const { deleteCardByListId } = cardContext;
 
@@ -55,7 +56,7 @@ const AllLists = ({ boardId }) => {
     <div>
       {isSpinning && (
         <div>
-          <img src={spinner} />
+          <img alt='spinner' src={spinner} />
         </div>
       )}
 
