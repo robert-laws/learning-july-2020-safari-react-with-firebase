@@ -68,10 +68,13 @@ const ListState = ({ children }) => {
   };
 
   const deleteListByBoardId = async (id) => {
+    let listIds = [];
+
     try {
       const lists = await listsRef.where('list.board', '==', id).get();
       if (lists.docs.length !== 0) {
         lists.forEach((list) => {
+          listIds.push(list.id);
           list.ref.delete();
           dispatch({ type: DELETE_LIST_BY_BOARD_ID, payload: id });
         });
@@ -79,6 +82,8 @@ const ListState = ({ children }) => {
     } catch (error) {
       console.error('Error deleting list: ', error);
     }
+
+    return listIds;
   };
 
   return (
