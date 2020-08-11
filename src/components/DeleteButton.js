@@ -15,9 +15,11 @@ const DeleteButton = ({ deleteFunctions, type, id }) => {
       const val = func(id);
       val.then((result) => {
         if (result !== undefined) {
-          result.forEach((item) => {
-            deleteCardByListId(item);
-          });
+          if (result.length !== 0) {
+            result.forEach((item) => {
+              deleteCardByListId(item);
+            });
+          }
         }
       });
     });
